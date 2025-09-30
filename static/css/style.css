@@ -1,0 +1,16 @@
+h1 {
+    color: green;
+}
+
+#home_para {
+    color: blueviolet;
+}
+
+.home_h2 {
+    color: cornflowerblue;
+}
+
+.img_1 {
+    height: 200px;
+    width: 200px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+
+
+    <h1>Users List</h1>
+    <hr>
+
+   {% for item in Users_list %}
+  <h3>{{ item.user_name }}</h3>
+  <ul>
+    <li>Age: {{ item.user_age }}</li>
+    <li>City: {{ item.user_city }}</li>
+    <li>Hobby: {{ item.user_hobby }}</li>
+    <li>Favorite Food: {{ item.user_food }}</li>
+    <li>
+      <a href="http://127.0.0.1:8000/Update/{{ item.id }}/">Update</a>
+      &nbsp;|&nbsp;
+      <a href="http://127.0.0.1:8000/Delete/{{ item.id }}/">Delete</a>
+    </li>
+  </ul>
+  <hr>
+{% empty %}
+  <p>No users yet. Add some from the form page!</p>
+{% endfor %}
+</body>
+</html>

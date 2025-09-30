@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+  <nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+    <h1>User Information Form</h1>
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" placeholder="User Name" name="u_name"><br><br>
+        <input type="number" placeholder="User Age" name="u_age"><br><br>
+        <input type="text" placeholder="User City" name="u_city"><br><br>
+        <input type="text" placeholder="User Hobby" name="u_hobby"><br><br>
+        <input type="text" placeholder="Favorite Food" name="u_food"><br><br>
+
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

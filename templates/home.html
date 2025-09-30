@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        .center-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+<h1 style="color:green; text-align:center;">Hello from home of Pizzas</h1>
+<hr>
+
+<p style="text-align:center;"><b>This is where Pizza’s are coded and decoded</b></p>
+
+<div class="center-container">
+    <img src="/media/products/Welcome.png" alt="Welcome Pizza" width="500">
+    <p>Welcome to our Django Project – enjoy exploring users, forms, and products!</p>
+</div>
+</body>
+</html>
+
+

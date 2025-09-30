@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+
+    </nav>
+
+    <h1>Products for the Users</h1>
+    <hr>
+
+    {% for item in product_list %}
+        <h3>{{ item.product_name }}</h3>
+        <img class="img_1" src="{{ item.product_photo.url }}" alt="{{ item.product_name }}">
+        <ul>
+            <li>Price: CAD {{ item.product_price }}</li>
+            <li>Description: {{ item.product_description }}</li>
+        </ul>
+        <hr>
+    {% empty %}
+        <p>No products available.</p>
+    {% endfor %}
+</body>
+</html>

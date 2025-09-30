@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Registration</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+  <h1>Create an Account</h1>
+  <hr>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

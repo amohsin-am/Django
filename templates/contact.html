@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>&nbsp;&nbsp;
+  <a href="/contact/">Contact</a>&nbsp;&nbsp;
+
+  {% if request.user.is_authenticated %}
+    <a href="/form/">Form</a>&nbsp;&nbsp;
+    <a href="/user_list/">User List</a>&nbsp;&nbsp;
+    <a href="/product/">Products</a>&nbsp;&nbsp;
+    <a href="/logout/">Logout</a>
+  {% else %}
+    <a href="/login/">Login</a>&nbsp;&nbsp;
+    <a href="/register/">Register</a>
+  {% endif %}
+</nav>
+
+    <h1>Thinking about Pizza? Lets connect</h1>
+    <p>Let us know what you think.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Your Name:</label>
+        <input type="text" name="name"><br><br>
+
+        <label>Your Email:</label>
+        <input type="email" name="email"><br><br>
+
+        <label>Message:</label><br>
+        <textarea name="message" rows="5" cols="40"></textarea><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
